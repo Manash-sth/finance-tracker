@@ -1,0 +1,23 @@
+# version: '4.15'
+services:
+  dev-pg-db:
+    image: postgres:15
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: fin-track-dev-db-user
+      POSTGRES_PASSWORD: qpwoeiruty
+      POSTGRES_DB: fin-track-dev-db
+    # restart: always
+    networks:
+      - solo-dev
+    volumes: 
+      - ./pgdata:/var/lib/postgresql/data
+
+
+networks:
+  solo-dev:
+
+volumes:
+  cache:
+    driver: local
