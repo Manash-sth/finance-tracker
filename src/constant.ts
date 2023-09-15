@@ -1,0 +1,8 @@
+export const Constants={
+    ACCESS_TIMEOUT: 300,
+    REFRESH_TIMEOUT: 1.577e+7,
+
+    SECURE_COOKIE: false,
+    ACCESS_COOKIE_EXIPRE: 600,
+    REFRESH_COOKIE_EXPIRE: 600
+}

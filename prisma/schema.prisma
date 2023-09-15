@@ -19,10 +19,11 @@ model User {
   disabled       Boolean  @default(false)
   deleted        Boolean  @default(false)
   del_user_info  Json?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  last_update    DateTime @default(now())
 
-  profile        Profile?
+  profile Profile?
 }
 
 model Profile {
@@ -30,12 +31,12 @@ model Profile {
   firstname        String?
   middlename       String?
   lastname         String?
-  avatar           String?
+  avatar           String? @default("")
   deleted          Boolean @default(false)
   del_profile_info Json?
 
-  userId Int  @unique
-  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user_id Int  @unique
+  user    User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
 enum Role {
