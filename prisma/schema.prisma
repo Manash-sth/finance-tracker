@@ -11,9 +11,34 @@ datasource db {
 }
 
 model User {
-  id  Int @id @default(autoincrement())
+  id             Int      @id @default(autoincrement())
+  email          String?  @unique
+  email_verified Boolean  @default(false)
+  password       String?
+  role           Role     @default(USER)
+  disabled       Boolean  @default(false)
+  deleted        Boolean  @default(false)
+  del_user_info  Json?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  profile        Profile?
 }
 
 model Profile {
-  id  Int @id @default(autoincrement())
+  id               Int     @id @default(autoincrement())
+  firstname        String?
+  middlename       String?
+  lastname         String?
+  avatar           String?
+  deleted          Boolean @default(false)
+  del_profile_info Json?
+
+  userId Int  @unique
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  ADMIN
 }
